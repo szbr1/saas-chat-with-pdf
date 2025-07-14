@@ -7,7 +7,7 @@ import Link from 'next/link'
 function Header() {
   return (
     <div className='px-2 py-3 flex border-b border-gray-200 justify-between items-center'>
-        <div className='text-xl'>Chat to <span className='text-blue-600'>PDF</span></div>
+        <Link href="/dashboard" className='text-xl cursor-pointer'>Chat to <span className='text-blue-600'>PDF</span></Link>
 
         <div className='flex items-center gap-4 md:gap-8 '>
             <Button className="hidden md:block cursor-pointer" variant={"link"}> Pricing </Button>
