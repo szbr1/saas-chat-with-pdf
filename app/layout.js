@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 import {
   ClerkProvider,
@@ -12,6 +13,10 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
     <html lang="en">
       <body className="min-h-screen  h-screen  ">
+      <Toaster
+  position="top-right"
+  reverseOrder={false}
+/>
         {children}
       </body>
     </html>
