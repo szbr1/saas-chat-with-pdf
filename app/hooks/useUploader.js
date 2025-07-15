@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useUser } from '@clerk/nextjs';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '@/firebase';
+import { generateEmbeddings } from '@/lib/generateEmbeddings';
 
 function useUploader() {
   const [progress, setProgress] = useState(0);
@@ -38,10 +39,9 @@ function useUploader() {
       });
 
       const fileId = uuidv4();
-      setFileId(fileId);
-
+      
       const downloadUrl = res.data.url;
-
+      
       await setDoc(doc(db, "users", user.id, "files", fileId), {
         name: file.name,
         size: file.size,
@@ -50,11 +50,15 @@ function useUploader() {
         ref: null,
         createdAt: new Date()
       });
-
+      
       setProgress(100); // done
       clearInterval(fakeProgress);
       setStatus('success');
-
+      
+      setStatus("Generating Embeddings");
+      await generateEmbeddings(fileId)
+      
+      setFileId(fileId);
       console.log('Upload Success ✅', downloadUrl);
 
     } catch (err) {

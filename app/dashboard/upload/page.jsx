@@ -31,7 +31,7 @@ function Page() {
 
   useEffect(() => {
     if (fileId) {
-      router.push(`/dashboard/${fileId}`);
+      router.push(`/dashboard/files/${fileId}`);
     }
     if (status === "success") {
       toast.success("✅ Successfully uploaded.");
