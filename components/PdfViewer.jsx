@@ -35,8 +35,8 @@ function PdfViewer({ url }) {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center">
-    <div className="sticky top-0 z-50 bg-gray-100 p-2 rounded-b-lg">
+    <div className="flex flex-col h-[calc(100vh-80px)] justify-center items-center overflow-y-auto overflow-x-auto p-3">
+    <div className="sticky  top-0 z-50 bg-gray-100 p-2 rounded-b-lg">
       <div className="max-w-6xl px-2 grid grid-cols-6 gap-2">
         <Button
           variant="outline"
@@ -103,12 +103,15 @@ function PdfViewer({ url }) {
         file={file}
         rotate={rotation}
         onLoadSuccess={onDocumentLoadSuccess}
-        className="m-4 overflow-scroll"
+        className=" overflow-scroll"
       >
         <Page className="shadow-lg" scale={scale} pageNumber={pageNumber} />
       </Document>
     )}
+
     </div>
+
+    
   );
 }
 

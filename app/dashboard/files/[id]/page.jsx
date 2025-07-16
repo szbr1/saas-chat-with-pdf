@@ -2,6 +2,7 @@
 import { adminDb } from "@/firebaseAdmin";
 import { auth } from "@clerk/nextjs/server";
 import PdfViewer from "@/components/PdfViewer";
+import ChatPage from "@/components/ChatPage";
 export default async function Page({ params: { id: docId } }) {
   const { userId } = await auth();
 
@@ -18,15 +19,15 @@ export default async function Page({ params: { id: docId } }) {
 
   const downloadUrl = ref.data()?.downloadUrl;
   return (
-    <div className="grid lg:grid-cols-5 h-full overflow-hidden">
+    <div className="grid lg:grid-cols-5 h-full ">
       {/* Right */}
-      <div className="col-span-5 lg:col-span-2 overflow-y-auto">
+      <div className="col-span-5 lg:col-span-2 h-full overflow-x-hidden overflow-y-scroll">
         {/* Chat */}
-        {/* <Chat id={id} /> */}
+        <ChatPage  />
       </div>
 
       {/* Left */}
-      <div className="col-span-5 lg:col-span-3 bg-gray-100 border-r-2 lg:border-indigo-600 lg:-order-1 overflow-auto">
+      <div className="col-span-5 lg:col-span-3 bg-gray-100 border-r-2 lg:border-indigo-600 lg:-order-1 overflow-auto p-5">
         {/* PDFView */}
         <PdfViewer url={downloadUrl} />
       </div>
